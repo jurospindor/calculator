@@ -1,7 +1,13 @@
-package calculator;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package calculatork;
 
-//source - https://www.cscprogrammingtutorials.com/2014/08/simple-java-gui-calculator.html
 
+
+import com.sun.javafx.scene.web.Debugger;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.awt.event.ActionEvent;
+import java.lang.management.ManagementFactory;
 import javax.swing.*;
 
 public class Calculator extends JFrame {
@@ -51,9 +58,24 @@ public class Calculator extends JFrame {
    static int licence1;
    static int licence2;
    
+  static  boolean  isDebug() {
+  for(String arg : ManagementFactory.getRuntimeMXBean().getInputArguments()) {
+    if(arg.contains("jdwp=")) {
+      return true;
+    }
+  }
+  return false;
+}
    
    public static void main(String[] args) {
        // TODO code application logic here
+
+      
+       if(isDebug()){
+           System.exit(0);
+           
+       }
+       
 	   int num[] = {69,110,116,101,114,32,108,105,99,101,110,99,101,32,107,101,121,32,58,32};
        String str = "";
        for(int i: num){
